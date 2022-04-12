@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,8 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { KioskComponent } from './pages/kiosk/kiosk.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { initializer } from './utility/app.init';
+import { KeycloakService } from 'keycloak-angular';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     KioskComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    KeycloakService,{
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      deps: [KeycloakService],
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
