@@ -3,7 +3,8 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
 
 #Developer
- [Wallace](https://github.com/angular/abwonji95) 
+
+***[Wallace](https://github.com/angular/abwonji95)***
 
 ## Development server
 
